@@ -87,7 +87,7 @@ var finances = [
   ['Feb-2017', 671099]
 ];
 
-// Prints report header into console
+// Prints report's header into console
 
 console.log("Financial Analysis \n----------------------");
 
@@ -121,7 +121,7 @@ console.log("Total: $" + totalProfit);
 
 var averageChange = totalProfit / finances.length;
 
-console.log("Average  Change: $" + Math.floor(averageChange))
+console.log("Average Change: $" + Math.floor(averageChange))
 
 
 // This locates the biggest number in onlyNumbers array and assigns it to maxProfitAmount var
@@ -129,16 +129,26 @@ console.log("Average  Change: $" + Math.floor(averageChange))
 var maxProfitAmount = onlyNumbers.reduce((a, b) =>
   Math.max(a, b), -Infinity);
 
-  //This prints the MaxProfitAmount to console
-
-console.log("Max Profit Amount " + maxProfitAmount);
-
-  // This locates the index of nested array holding maxProfitAmount and assigns it's contents to maxProfitMonth array.
+  // This locates the index of nested array holding maxProfitAmount and assigns the first part of its contents to maxProfitMonth var.
 
 var maxProfitMonthIndex = flatFinances.indexOf(maxProfitAmount) - 1;
 
 var maxProfitMonth = flatFinances[maxProfitMonthIndex];
 
-console.log("Max Profit Month " + flatFinances[maxProfitMonthIndex])
+// This prints the greatest increase in profits month and amount to console
 
 console.log ("Greatest Increase in Profits: " + maxProfitMonth + " " + "($" + maxProfitAmount + ")" )
+
+
+// This locates the lowest number in onlyNumbers array and assigns in to minProfitAmount array
+
+var minProfitAmount = onlyNumbers.reduce((a, b) =>
+  Math.min(a, b), );
+
+// This locates the index of the nested array holding the minProfitAmount and assigns the first part of its contents to minProfitMonth var
+
+  var minProfitMonthIndex = flatFinances.indexOf(minProfitAmount) - 1;
+
+  var minProfitMonth = flatFinances[minProfitMonthIndex];
+
+  console.log ("Greatest Decrease in Profits: " + minProfitMonth + " " + "($" + minProfitAmount + ")" )
