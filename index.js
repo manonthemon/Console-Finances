@@ -165,11 +165,14 @@ var allChangesSum= allChanges.reduce(function (a, b) {
 return a + b;
 }, 0);
 
+
+var changesNumber = onlyNumbers.length - 1;
+
 // Dividing allChangesSum by number of changes
 
-var averageChange = allChangesSum / onlyNumbers.length -1;
+var averageChange = allChangesSum / changesNumber;
 
-console.log ("Average Change: $" + Math.trunc(averageChange))
+console.log ("Average Change: $" + Math.round(100*averageChange)/100)
 
 // This locates the biggest number in onlyNumbers array and assigns it to maxProfitAmount var
 
