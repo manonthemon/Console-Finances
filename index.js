@@ -108,13 +108,21 @@ var onlyNumbers = flatFinances.filter(
 
 // This sums up all elements of array onlyNumbers
 
-let sum = onlyNumbers.reduce(function (a, b) {
+var totalProfit = onlyNumbers.reduce(function (a, b) {
   return a + b;
 }, 0);
 
 // This prints the total sum of numbers in onlyNumbers array to console
 
-console.log("Total: $" + sum);
+console.log("Total: $" + totalProfit);
+
+
+// This calculates average change
+
+var averageChange = totalProfit / finances.length;
+
+console.log("Average  Change: $" + Math.floor(averageChange))
+
 
 // This locates the biggest number in onlyNumbers array and assigns it to maxProfitAmount var
 
