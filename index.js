@@ -117,11 +117,11 @@ var totalProfit = onlyNumbers.reduce(function (a, b) {
 console.log("Total: $" + totalProfit);
 
 
-// This calculates average change
+// This calculates average change in profits and prints it to console, while removing the decimal part of the number.
 
 var averageChange = totalProfit / finances.length;
 
-console.log("Average Change: $" + Math.floor(averageChange))
+console.log("Average Change: $" + Math.trunc(averageChange))
 
 
 // This locates the biggest number in onlyNumbers array and assigns it to maxProfitAmount var
