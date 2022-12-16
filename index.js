@@ -159,18 +159,16 @@ function diff (arr){
 }
 var allChanges = (diff(onlyNumbers));
 
-// Summing up all the changes
+// Summing up all the changes and adding to var allChangesSum
 
 var allChangesSum= allChanges.reduce(function (a, b) {
 return a + b;
 }, 0);
 
 
-var changesNumber = onlyNumbers.length - 1;
+// Dividing allChangesSum by number of changes and printing results to console
 
-// Dividing allChangesSum by number of changes
-
-var averageChange = allChangesSum / changesNumber;
+var averageChange = allChangesSum / (finances.length-1);
 
 console.log ("Average Change: $" + Math.round(100*averageChange)/100)
 
