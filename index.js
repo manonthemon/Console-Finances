@@ -87,4 +87,28 @@ var finances = [
 ['Feb-2017', 671099]
 ];
 
-console.log(finances.length);
+// Prints report header into console
+
+console.log("Financial Analysis \n----------------------");
+
+// This calculates the number of months in the data set
+
+console.log("Total Months: " + finances.length);
+
+
+//This flattens the finances array
+
+flatFinances = finances.flat();
+
+// This creates a var with just the numbers from the flatFinances var
+
+var onlyNumbers = flatFinances.filter(
+  element => typeof element === 'number'
+);
+
+// This sums up all elements of array
+
+let sum = onlyNumbers.reduce(function (a, b) {
+  return a + b;
+}, 0);
+console.log("Total: $" + sum)
