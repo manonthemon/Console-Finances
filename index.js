@@ -118,11 +118,13 @@ var finances = [
 
 console.log("Financial Analysis \n----------------------");
 
-// This prints the number of months in the data set to the console
+// TOTAL MONTHS
+//This prints the number of months in the data set to the console
 
 console.log("Total Months: " + finances.length);
 
-//This flattens the finances array and creates a new var flatFinances. I decided it's easier to find specific
+// TOTAL PROFITS
+// This flattens the finances array and creates a new var flatFinances. I decided it's easier to find specific
 // values in a flat array vs a nested array.
 
 flatFinances = finances.flat();
@@ -143,11 +145,10 @@ var totalProfit = onlyNumbers.reduce(function (a, b) {
 
 console.log("Total: $" + totalProfit);
 
-
+// AVERAGE CHANGE
 // This calculates average change in profits and prints it to console, while removing the decimal part of the number.
 
-//STEP 1: Calculating changes over time by subtracting consecutive elements of onlyNumbers aray
-
+//STEP 1: Calculating changes over time by subtracting consecutive elements of onlyNumbers array
 
 function diff (arr){
   diffArr=[];
@@ -159,18 +160,19 @@ function diff (arr){
 }
 var allChanges = (diff(onlyNumbers));
 
-// Summing up all the changes and adding to var allChangesSum
+// STEP 2: Summing up all the changes and adding to var allChangesSum
 
 var allChangesSum= allChanges.reduce(function (a, b) {
 return a + b;
 }, 0);
 
-
-// Dividing allChangesSum by number of changes and printing results to console
+// STEP 3: Dividing allChangesSum by number of changes and printing results to console
 
 var averageChange = allChangesSum / (finances.length-1);
 
 console.log ("Average Change: $" + Math.round(100*averageChange)/100)
+
+// GREATEST INCREASE
 
 // This locates the biggest number in onlyNumbers array and assigns it to maxProfitAmount var
 
@@ -187,6 +189,7 @@ var maxProfitMonth = flatFinances[maxProfitMonthIndex];
 
 console.log("Greatest Increase in Profits: " + maxProfitMonth + " " + "($" + maxProfitAmount + ")")
 
+// GREATEST DECREASE
 
 // This locates the lowest number in onlyNumbers array and assigns in to minProfitAmount array
 
@@ -208,3 +211,21 @@ console.log("Greatest Decrease in Profits: " + minProfitMonth + " " + "($" + min
 
 
 
+var maxProftChange = allChanges.reduce((a, b) =>
+  Math.max(a, b), -Infinity);
+
+  console.log(maxProftChange)
+
+
+  var minProfitChange = allChanges.reduce((a, b) =>
+  Math.min(a, b),);
+
+  console.log(minProfitChange)
+
+
+
+  var maxProfitMonthIndex = flatFinances.indexOf(maxProftChange) - 1;
+
+var maxProfitMonth = flatFinances[maxProfitMonthIndex];
+
+console.log(maxProfitMonth)
