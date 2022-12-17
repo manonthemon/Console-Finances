@@ -1,30 +1,3 @@
-
-// The total number of months included in the dataset.
-// figure out how many rows there are in the finances variable
-// The net total amount of Profit/Losses over the entire period.
-// add everything together
-// probably a loop
-// The average of the changes in Profit/Losses over the entire period.
-// calculate each change by subtracting the previous month from this month
-// You will need to track what the total change in profits is from month to month and then find the average.
-// (Total/total number of changes) ===> total change/(months - 1)
-// maybe put all the changes into an array? using .push(...) ?
-// The greatest increase in profits (date and amount) over the entire period.
-// start with 0
-//   check the last increase. If it's bigger than 0, keep track of the new biggest one.
-//   in a loop
-// The greatest decrease in losses (date and amount) over the entire period.
-// console output format!
-// Financial Analysis
-// ----------------------------
-// Total Months: 25
-// Total: $2561231
-// Average  Change: $-2315.12
-// Greatest Increase in Profits: Feb-2012 ($1926159)
-// Greatest Decrease in Profits: Sep-2013 ($-2196167)
-
-
-
 var finances = [
   ['Jan-2010', 867884],
   ['Feb-2010', 984655],
@@ -114,18 +87,19 @@ var finances = [
   ['Feb-2017', 671099]
 ];
 
-// Prints report's header into console
+// HEADER
+// Prints report's header into console.
 
-console.log("Financial Analysis \n----------------------");
+console.log("Financial Analysis \n----------------------------");
 
 // TOTAL MONTHS
-//This prints the number of months in the data set to the console
+//This prints the number of months in the data set to the console.
 
 console.log("Total Months: " + finances.length);
 
 // TOTAL PROFITS
 // This flattens the finances array and creates a new var flatFinances. I decided it's easier to find specific
-// values in a flat array vs a nested array.
+// values in a flat array vs a nested array. I'm yet to learn how to efficiently extract data from nested arrays.
 
 flatFinances = finances.flat();
 
@@ -135,97 +109,67 @@ var onlyNumbers = flatFinances.filter(
   element => typeof element === 'number'
 );
 
-// This sums up all elements of array onlyNumbers
+// This sums up all elements of array onlyNumbers to calculate total profits.
 
 var totalProfit = onlyNumbers.reduce(function (a, b) {
   return a + b;
 }, 0);
 
-// This prints the total sum of numbers in onlyNumbers array to console
+// This prints the total sum of numbers in onlyNumbers array to console.
 
 console.log("Total: $" + totalProfit);
 
 // AVERAGE CHANGE
-// This calculates average change in profits and prints it to console, while removing the decimal part of the number.
 
-//STEP 1: Calculating changes over time by subtracting consecutive elements of onlyNumbers array
+//STEP 1: Calculating changes over time by subtracting consecutive elements of onlyNumbers array 
+// and placing them in a new var allChanges.
 
-function diff (arr){
-  diffArr=[];
-  for(var i=0; i<arr.length-1; i++){
-      diffArr.push(arr[i+1]-arr[i]);
-
+function diff(arr) {
+  diffArr = [];
+  for (var i = 0; i < arr.length - 1; i++) {
+    diffArr.push(arr[i + 1] - arr[i]);
   }
   return diffArr;
 }
 var allChanges = (diff(onlyNumbers));
 
-// STEP 2: Summing up all the changes and adding to var allChangesSum
+// STEP 2: Adding up all the changes and adding to var allChangesSum.
 
-var allChangesSum= allChanges.reduce(function (a, b) {
-return a + b;
+var allChangesSum = allChanges.reduce(function (a, b) {
+  return a + b;
 }, 0);
 
-// STEP 3: Dividing allChangesSum by number of changes and printing results to console
+// STEP 3: Dividing allChangesSum by number of changes and printing results to console, up to second decimal place.
 
-var averageChange = allChangesSum / (finances.length-1);
+var averageChange = allChangesSum / (finances.length - 1);
 
-console.log ("Average Change: $" + Math.round(100*averageChange)/100)
+console.log("Average Change: $" + Math.round(100 * averageChange) / 100)
 
 // GREATEST INCREASE
 
-// This locates the biggest number in onlyNumbers array and assigns it to maxProfitAmount var
+// This locates the biggest number in allChanges array and assigns it to maxProfitIncrease var.
 
-var maxProfitAmount = onlyNumbers.reduce((a, b) =>
+var maxProfitIncrease = allChanges.reduce((a, b) =>
   Math.max(a, b), -Infinity);
 
-// This locates the index of nested array holding maxProfitAmount and assigns the first part of its contents to maxProfitMonth var.
+// This locates the index of array holding maxProfitIncrease in allChanges and assigns it to new var maxProfitIncreaseIndex.
 
-var maxProfitMonthIndex = flatFinances.indexOf(maxProfitAmount) - 1;
+var maxProfitIncreaseIndex = allChanges.indexOf(maxProfitIncrease);
 
-var maxProfitMonth = flatFinances[maxProfitMonthIndex];
+// This locates the index of the array nested in fiances, relating to the maxProfitIncrease, 
+// and assigns it to maxIncreaseMonthAndAmount var.
 
-// This prints the greatest increase in profits month and amount to console
+var maxIncreaseMonthAndAmount = finances[(maxProfitIncreaseIndex + 1)];
 
-console.log("Greatest Increase in Profits: " + maxProfitMonth + " " + "($" + maxProfitAmount + ")")
+// This prints the greatest increase in profits month and amount to console.
 
-// GREATEST DECREASE
+console.log("Greatest Increase in Profits: " + maxIncreaseMonthAndAmount[0] + " " + "($" + maxProfitIncrease + ")")
 
-// This locates the lowest number in onlyNumbers array and assigns in to minProfitAmount array
+// GREATEST DECREASE - repeat steps from GREATEST INCREASE
 
-var minProfitAmount = onlyNumbers.reduce((a, b) =>
+var maxProfitDecrease = allChanges.reduce((a, b) =>
   Math.min(a, b),);
+var maxProfitDecreaseIndex = allChanges.indexOf(maxProfitDecrease);
+var maxDecreaseMonthAndAmount = finances[(maxProfitDecreaseIndex + 1)];
 
-// This locates the index of the nested array holding the minProfitAmount and assigns the first part of its contents to minProfitMonth var
-
-var minProfitMonthIndex = flatFinances.indexOf(minProfitAmount) - 1;
-
-var minProfitMonth = flatFinances[minProfitMonthIndex];
-
-console.log("Greatest Decrease in Profits: " + minProfitMonth + " " + "($" + minProfitAmount + ")")
-
-
-
-
-// TRYING NEW THINGS
-
-
-
-var maxProftChange = allChanges.reduce((a, b) =>
-  Math.max(a, b), -Infinity);
-
-  console.log(maxProftChange)
-
-
-  var minProfitChange = allChanges.reduce((a, b) =>
-  Math.min(a, b),);
-
-  console.log(minProfitChange)
-
-
-
-  var maxProfitMonthIndex = flatFinances.indexOf(maxProftChange) - 1;
-
-var maxProfitMonth = flatFinances[maxProfitMonthIndex];
-
-console.log(maxProfitMonth)
+console.log("Greatest Decrease in Profits: " + maxDecreaseMonthAndAmount[0] + " " + "($" + maxProfitDecrease + ")")
