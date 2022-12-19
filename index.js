@@ -88,7 +88,7 @@ var finances = [
 ];
 
 // HEADER
-// Prints report's header into console.
+// This prints report's header into console.
 
 console.log("Financial Analysis \n----------------------------");
 
