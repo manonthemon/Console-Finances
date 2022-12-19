@@ -6,7 +6,7 @@
 
 I've completed this project to implement skills acquired during the fourth week of EDX front-end development bootcamp. I was tasked with creating creating JavaScript code for analyzing the financial records of a company, as presented on the screenshot below:
 
-![deployed page screenshot](/images/Finances-Console-Screenshot.jpg)
+![deployed page screenshot](images/Finances-Console-Screenshot.jpg)
 
 Creating this code allowed me to:
 
